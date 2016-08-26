@@ -1,0 +1,69 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Gemstone Dialog</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--
+		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+-->
+		<link rel="stylesheet" href="static/stylesheets/watson-bootstrap-dark.css" type="text/css" />
+		<link rel="stylesheet" href="static/stylesheets/ibm-banner.css" type="text/css" />
+		<link rel="stylesheet" href="static/stylesheets/ibm-style.css" type="text/css" />
+		<script>
+			function updateScroll(){
+				var element = document.getElementById("chat-window");
+				element.scrollTop = element.scrollHeight;
+			}
+		</script>
+	</head>
+	<body class="claro" onload=updateScroll()>
+		<div class="row service-container">
+			<div class="col-lg-12 service-header">
+				<div class="row top-nav">
+					<div class="container">
+						<h3 class="heading left"><span class="text-right">WDC Demo</span></h3>
+					</div>
+				</div>
+			</div>
+			<div class="row conversation-div">
+				<div class="container">
+					<h3 class="header-text">Conversation Sample</h3>
+					<div class="col-lg-6 col-md-6 col-xs-12">
+						<!--<h4 class="green-title">Powered by IBM Watson</h4>-->
+						<div class="conversation-flow-container clearfix">
+							<div id='chat-window' class="col-lg-12 col-md-12 col-xs-12" style='height: 500px; max-height: 500px; overflow: auto;'>
+								<div class="conversation-well conversation-container clearfix">
+									{% for post in posts %}
+									<div class='{{post.style}}' style='margin-bottom: 10px;'>
+<!--
+										<div class='avatar-icon'>
+											<img src='static/images/{{post.icon}}'>
+										</div>
+-->
+										<div class='messages'>
+											<p>{% autoescape false %}{{post.text}}{% endautoescape %}</p>
+<!--
+											<time datetime='{{post.datetime}}'>{{post.name}} • {{post.datetime}}</time>
+-->
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+							<form action='.' method='POST'>
+								<div class="col-lg-10 col-md-10 col-xs-8 no-padding-right">
+									<input id="response-input" name='response-input' type="text" placeholder="Ask IBM Watson" class="user-input form-control" />
+								</div>
+								<div class="col-lg-2 col-md-2 col-xs-4 text-right no-padding-left">
+									<button id="send-btn" class="input-btn btn btn-block">Send</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

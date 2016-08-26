@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Find-A-Program Dialog Assistant</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/static/stylesheets/chatbox.css">
+		<script>
+			function updateScroll(){
+				var element = document.getElementById("find-a-program-dialog");
+				element.scrollTop = element.scrollHeight;
+			}		
+		</script>
+	</head>
+	<body onload=updateScroll()>
+		<section class='chat-container'>
+			<header class='top-header'>
+				<div class='left'>
+					<span class='icon typicons-message'></span>
+					<span class='top-header-tit'>Program Advisor</span>
+				</div>
+				<div class='right'>
+					<span class='icon typicons-minus'></span>
+					<span class='icon typicons-times'></span>
+				</div>
+			</header>
+			<div class="setting">
+				<div class='left'>
+					<span class='fontawesome-facetime-video'></span>
+					<span class='iconicstroke-user'></span>
+				</div>
+				<div class='right'>
+					<span class='typicons-cog'></span>
+				</div>
+			</div>
+			<ol class='chat-box' id='find-a-program-dialog'>
+				{% for post in posts %}
+				<li class='{{post.style}}'>
+					<div class='avatar-icon'>
+						<img src='/static/images/{{post.icon}}'>
+					</div>
+					<div class='messages'>
+						<p>{{post.text}}</p>
+						<time datetime='{{post.datetime}}'>{{post.name}} • {{post.datetime}}</time>
+					</div>
+				</li>
+				{% endfor %}
+			</ol>
+			<header class='top-header'>
+				<div class='left'>
+<!--				
+					<span class='icon typicons-message'></span>
+					<form action='/form/156008/164662/' method='POST'>
+					<form action='/service/' method='POST'>
+-->
+					<form action='.' method='POST'>
+						<input type="text" value="Ask Watson a question..." name='question' style='font-size: 0.8rem; width: 230px;'>
+						<input type="submit" value="Send" name='question-submit' style='font-size: 0.8rem;'>
+					</form>
+				</div>
+				<div class='right'>
+<!--				
+					<span class='icon typicons-minus'></span>
+					<span class='icon typicons-times'></span>
+-->					
+				</div>
+			</header>
+		</section>
+	</body>
+</html>
