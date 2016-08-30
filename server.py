@@ -10,12 +10,13 @@ app = Flask(__name__)
 #    print ('warning: no .env file loaded')
 
 # Externalized customizations --------------------
+BOT_NAME = 'Watson'
 WATSON_IMAGE = 'watson.jpg'
 WATSON_STYLE = 'chat-watson'
 HUMAN_STYLE = 'chat-human'
 CHAT_TEMPLATE = 'IBM-style-dialog.html'
 QUESTION_INPUT = 'response-input'
-PERSONA = 'John'
+PERSONA_NAME = 'User'
 PERSONA_IMAGE = 'watson.jpg'
 # Reset conversation -----------------------------
 POSTS = []
@@ -34,7 +35,7 @@ def post_watson_response(response):
     global WATSON_IMAGE, POSTS, HUMAN_STYLE, WATSON_STYLE
     print('Inside post_watson_response')
     now = datetime.datetime.now()
-    post = Post(WATSON_STYLE, WATSON_IMAGE, response, now.strftime('%Y-%m-%d %H:%M'), 'Watson')
+    post = Post(WATSON_STYLE, WATSON_IMAGE, response, now.strftime('%Y-%m-%d %H:%M'), BOT_NAME)
     POSTS.append(post)
     return post
 
@@ -42,7 +43,7 @@ def post_user_input(input):
     global POSTS, HUMAN_STYLE, WATSON_STYLE, PERSONA_IMAGE, PERSONA
     print('Inside post_user_input')
     now = datetime.datetime.now()
-    post = Post(HUMAN_STYLE, PERSONA_IMAGE, input, now.strftime('%Y-%m-%d %H:%M'), PERSONA)
+    post = Post(HUMAN_STYLE, PERSONA_IMAGE, input, now.strftime('%Y-%m-%d %H:%M'), PERSONA_NAME)
     POSTS.append(post)
     return post
 
@@ -71,7 +72,7 @@ def Index():
     CONVERSATION_CONTEXT = ''
     CONVERSATION_PAYLOAD = ''
     final_response = ''
-    response= get_application_start_response()
+    response = get_application_start_response()
     if response != None:
         CONVERSATION_CONTEXT = response['context']
         CONVERSATION_PAYLOAD = response
